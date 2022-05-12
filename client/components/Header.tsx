@@ -3,6 +3,8 @@ import Image from 'next/image';
 import ethLogo from '../assets/eth.png';
 import uniSwapLogo from '../assets/uniswap.png';
 import {FiArrowUpRight} from "react-icons/fi";
+import { AiOutlineDown } from 'react-icons/ai';
+import { HiOutlineDotsVertical } from 'react-icons/hi';
 
 const style = {
     wrapper: `p-4 w-screen flex justify-between items-center`,
@@ -58,6 +60,24 @@ const Header = () => {
                     </a>
                 </div>
             </nav>
+            <div className={style.buttonsContainer}>
+                <div className={`${style.button} ${style.buttonPadding}`}>
+                    <div className={style.buttonIconContainer}>
+                        <Image src={ethLogo} alt='eth logo' height={20} width={20} />
+                    </div>
+                    <p>Ethereum</p>
+                    <div className={style.buttonIconContainer}>
+                        <AiOutlineDown />
+                    </div>
+                </div>
+
+                <div className={`${style.button} ${style.buttonPadding}`}>
+                    <div className={`${style.buttonIconContainer} mx-2`}>
+                        <HiOutlineDotsVertical />
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
