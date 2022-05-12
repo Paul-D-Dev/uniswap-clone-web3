@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const TransactionContext = React.createContext();
 
@@ -11,11 +11,26 @@ if (typeof window !== 'undefined') {
 export const TransactionProvider = ({children}) => {
     const [currentAccount, setCurrentAccount] = useState();
 
+    useEffect(() => {
+        checkIfWalletIsConnected();
+    }, []);
+
     const connectWallet = async (metamask = eth) => {
         try {
             if (!metamask) return alert('Please install MetaMask');
             const accounts = await metamask.request({ method: 'eth_requestAccounts' });
             setCurrentAccount(accounts[0]);
+        } catch (error) {
+            console.log(error);
+            throw new Error('No ethereum object.');
+        }
+    }
+
+    const checkIfWalletIsConnected = async (metamask = eth) => {
+        try {
+            if (!metamask) return alert('Please install MetaMask');
+            const accounts = await metamask.request({ method: 'eth_accounts' });
+            if(accounts.length) setCurrentAccount(accounts[0]);
         } catch (error) {
             console.log(error);
             throw new Error('No ethereum object.');
