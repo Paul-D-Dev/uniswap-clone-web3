@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import {ethers} from "ethers";
+import {contractABI, contractAddress} from "../lib/constants";
 
 export const TransactionContext = React.createContext();
 
@@ -9,7 +11,11 @@ if (typeof window !== 'undefined') {
 }
 
 export const TransactionProvider = ({children}) => {
-    const [currentAccount, setCurrentAccount] = useState();
+    const [currentAccount, setCurrentAccount] = useState('');
+    const [formData, setFormData] = useState({
+        addressTo: '',
+        amount: '',
+    })
 
     useEffect(() => {
         checkIfWalletIsConnected();
@@ -41,18 +47,72 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    const getEthereumContract = () => {
+        const provider = new ethers.providers.Web3Provider(eth);
+        const signer = provider.getSigner();
+        return new ethers.Contract(
+            contractAddress,
+            contractABI,
+            signer,
+        );
+    }
+
     const sendTransaction = async (metamask = eth, connectedAccount = currentAccount) => {
         try {
             noMetamask(metamask);
+            const { addressTo, amount } = formData;
+            const transactionContract = getEthereumContract();
+            const parsedAmount = ethers.utils.parseEther(amount);
+
+            await metamask.request({
+                method: 'eth_sendTransaction',
+                params: [
+                    {
+                        from: connectedAccount,
+                        to: addressTo,
+                        gas: '0x7EF40', // 520000 Gwei
+                        value: parsedAmount._hex,
+                    },
+                ],
+            })
+
+
+            // use function in Transaction.sol (publishTransaction)
+            const transactionHash = await transactionContract.publishTransaction(
+                addressTo,
+                parsedAmount,
+                `Transferring ETH ${parsedAmount} to ${addressTo}`,
+                'TRANSFER',
+            )
+
+
+            await transactionHash.wait()
+
+            // TODO save transaction in Sanity
+
+
         } catch (error) {
             console.log(error);
-            throw new Error('No ethereum object.');
         }
+    }
+
+    const handleChange = (name, e) => {
+        setFormData((prevState) =>
+            ({ ...prevState, [name]: e.target.value })
+        );
     }
 
     return (
         // return bucket of data to be used in other components
-        <TransactionContext.Provider value={{currentAccount, connectWallet}}>
+        <TransactionContext.Provider
+            value={{
+                currentAccount,
+                connectWallet,
+                sendTransaction,
+                handleChange,
+                formData,
+            }}
+        >
             {children}
         </TransactionContext.Provider>
     )

@@ -3,7 +3,7 @@ import { RiSettings3Fill } from 'react-icons/ri'
 import { AiOutlineDown } from 'react-icons/ai'
 import ethLogo from '../assets/eth.png'
 import { useContext } from 'react'
-import { useRouter } from 'next/router'
+import {TransactionContext} from "../context/TransactionContext";
 
 
 const style = {
@@ -22,6 +22,20 @@ const style = {
 
 const Main = () => {
 
+    const { formData, handleChange, sendTransaction } = useContext(TransactionContext);
+
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
+        const { addressTo, amount } = formData;
+        e.preventDefault();
+
+        if (!addressTo || !amount) {
+            console.log('addressTo or amount is empty');
+            return;
+        }
+
+        sendTransaction();
+    }
+
     return (
         <div className={style.wrapper}>
             <div className={style.content}>
@@ -37,6 +51,8 @@ const Main = () => {
                         className={style.transferPropInput}
                         placeholder='0.0'
                         pattern='^[0-9]*[.,]?[0-9]*$'
+                        onChange={e => handleChange('amount', e)}
+
                     />
                     <div className={style.currencySelector}>
                         <div className={style.currencySelectorContent}>
@@ -53,10 +69,11 @@ const Main = () => {
                         type='text'
                         className={style.transferPropInput}
                         placeholder='0x...'
+                        onChange={e => handleChange('addressTo', e)}
                     />
-                    <div className={style.currencySelector}></div>
                 </div>
                 <div
+                    onClick={e => handleSubmit(e)}
                     className={style.confirmButton}>
                     Confirm
                 </div>
