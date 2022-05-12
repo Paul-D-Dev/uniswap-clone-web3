@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1715371-72d0-46dc-aca8-d064e76b53b5" name="Changes" comment="Feat index.tsx: clear and set style">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header.tsx" afterDir="false" />
+    <list default="true" id="b1715371-72d0-46dc-aca8-d064e76b53b5" name="Changes" comment="chores(idea)">
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       <workItem from="1650594449649" duration="990000" />
       <workItem from="1650595463479" duration="1750000" />
       <workItem from="1650597683130" duration="284000" />
-      <workItem from="1652366787050" duration="904000" />
+      <workItem from="1652366787050" duration="1046000" />
     </task>
     <task id="LOCAL-00001" summary="CHORES create app moves to client folder">
       <created>1650594674082</created>
@@ -101,7 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650597531097</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(header): ui header">
+      <created>1652367814552</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652367814552</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chores(idea)">
+      <created>1652367834234</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652367834234</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +137,9 @@
     <MESSAGE value="Studio : create documents Users &amp; Transactions" />
     <MESSAGE value="Studio : update schema to create document in sanity" />
     <MESSAGE value="Feat index.tsx: clear and set style" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat index.tsx: clear and set style" />
+    <MESSAGE value="feat(header): ui header" />
+    <MESSAGE value="chores(idea)" />
+    <option name="LAST_COMMIT_MESSAGE" value="chores(idea)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
