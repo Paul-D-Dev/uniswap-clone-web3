@@ -15,9 +15,13 @@ export const TransactionProvider = ({children}) => {
         checkIfWalletIsConnected();
     }, []);
 
+    const noMetamask = (metamask) => {
+        if (!metamask) return alert('Please install MetaMask');
+    }
+
     const connectWallet = async (metamask = eth) => {
         try {
-            if (!metamask) return alert('Please install MetaMask');
+            noMetamask(metamask);
             const accounts = await metamask.request({ method: 'eth_requestAccounts' });
             setCurrentAccount(accounts[0]);
         } catch (error) {
@@ -28,9 +32,18 @@ export const TransactionProvider = ({children}) => {
 
     const checkIfWalletIsConnected = async (metamask = eth) => {
         try {
-            if (!metamask) return alert('Please install MetaMask');
+            noMetamask(metamask);
             const accounts = await metamask.request({ method: 'eth_accounts' });
             if(accounts.length) setCurrentAccount(accounts[0]);
+        } catch (error) {
+            console.log(error);
+            throw new Error('No ethereum object.');
+        }
+    }
+
+    const sendTransaction = async (metamask = eth, connectedAccount = currentAccount) => {
+        try {
+            noMetamask(metamask);
         } catch (error) {
             console.log(error);
             throw new Error('No ethereum object.');
