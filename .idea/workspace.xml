@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1715371-72d0-46dc-aca8-d064e76b53b5" name="Changes" comment="CHORES create app moves to client folder">
-      <change afterPath="$PROJECT_DIR$/studio/.gitignore" afterDir="false" />
+    <list default="true" id="b1715371-72d0-46dc-aca8-d064e76b53b5" name="Changes" comment="Feat index.tsx: clear and set style">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,6 +43,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -53,7 +61,10 @@
       <updated>1650593586807</updated>
       <workItem from="1650593588012" duration="344000" />
       <workItem from="1650594086792" duration="349000" />
-      <workItem from="1650594449649" duration="926000" />
+      <workItem from="1650594449649" duration="990000" />
+      <workItem from="1650595463479" duration="1750000" />
+      <workItem from="1650597683130" duration="284000" />
+      <workItem from="1652366787050" duration="904000" />
     </task>
     <task id="LOCAL-00001" summary="CHORES create app moves to client folder">
       <created>1650594674082</created>
@@ -62,7 +73,35 @@
       <option name="project" value="LOCAL" />
       <updated>1650594674082</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Set up studio sanity">
+      <created>1650595427292</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650595427292</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Studio : create documents Users &amp; Transactions">
+      <created>1650596628108</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1650596628108</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Studio : update schema to create document in sanity">
+      <created>1650597150167</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650597150167</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Feat index.tsx: clear and set style">
+      <created>1650597531097</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650597531097</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,6 +120,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHORES create app moves to client folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHORES create app moves to client folder" />
+    <MESSAGE value="Set up studio sanity" />
+    <MESSAGE value="Studio : create documents Users &amp; Transactions" />
+    <MESSAGE value="Studio : update schema to create document in sanity" />
+    <MESSAGE value="Feat index.tsx: clear and set style" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat index.tsx: clear and set style" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
