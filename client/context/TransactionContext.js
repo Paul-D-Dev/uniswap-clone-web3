@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {ethers} from "ethers";
 import {contractABI, contractAddress} from "../lib/constants";
+import { client } from '../lib/sanityClient'
 
 export const TransactionContext = React.createContext();
 
@@ -20,6 +21,23 @@ export const TransactionProvider = ({children}) => {
     useEffect(() => {
         checkIfWalletIsConnected();
     }, []);
+
+    /**
+     * Create user profile in Sanity
+     */
+    useEffect(() => {
+        if(!currentAccount) return;
+        ;(async () => {
+            const userDoc = {
+                _type: 'users',
+                _id: currentAccount,
+                userName: 'Unnamed',
+                address: currentAccount,
+            }
+
+            await client.createIfNotExists(userDoc);
+        })()
+    }, [currentAccount]);
 
     const noMetamask = (metamask) => {
         if (!metamask) return alert('Please install MetaMask');
@@ -57,6 +75,37 @@ export const TransactionProvider = ({children}) => {
         );
     }
 
+    const saveTransaction = async (
+        txHash,
+        amount,
+        fromAddress = currentAccount,
+        toAddress
+    ) => {
+        const txDoc = {
+            _type: 'transactions',
+            _id: txHash,
+            fromAddress: fromAddress,
+            toAddress: toAddress,
+            timestamp: new Date(Date.now()).toISOString(),
+            txHash: txHash,
+            amount: parseFloat(amount),
+        }
+
+        await client.createIfNotExists(txDoc);
+
+        await client
+            .patch(currentAccount)
+            .setIfMissing({ transactions: [] })
+            .insert('after', 'transactions[-1]', [
+                {
+                    _key: txHash,
+                    _ref: txHash,
+                    _type: 'reference',
+                },
+            ])
+            .commit()
+    }
+
     const sendTransaction = async (metamask = eth, connectedAccount = currentAccount) => {
         try {
             noMetamask(metamask);
@@ -89,7 +138,12 @@ export const TransactionProvider = ({children}) => {
             await transactionHash.wait()
 
             // TODO save transaction in Sanity
-
+            await saveTransaction(
+                transactionHash.hash,
+                amount,
+                connectedAccount,
+                addressTo,
+            );
 
         } catch (error) {
             console.log(error);
