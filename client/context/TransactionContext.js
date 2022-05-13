@@ -3,6 +3,9 @@ import {ethers} from "ethers";
 import {contractABI, contractAddress} from "../lib/constants";
 import { client } from '../lib/sanityClient'
 
+
+// TODO handle cancel transaction on metamask
+
 export const TransactionContext = React.createContext();
 
 let eth;
@@ -17,6 +20,7 @@ export const TransactionProvider = ({children}) => {
         addressTo: '',
         amount: '',
     })
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         checkIfWalletIsConnected();
@@ -125,7 +129,6 @@ export const TransactionProvider = ({children}) => {
                 ],
             })
 
-
             // use function in Transaction.sol (publishTransaction)
             const transactionHash = await transactionContract.publishTransaction(
                 addressTo,
@@ -134,16 +137,17 @@ export const TransactionProvider = ({children}) => {
                 'TRANSFER',
             )
 
-
+            setIsLoading(true);
             await transactionHash.wait()
 
-            // TODO save transaction in Sanity
             await saveTransaction(
                 transactionHash.hash,
                 amount,
                 connectedAccount,
                 addressTo,
             );
+
+            setIsLoading(false);
 
         } catch (error) {
             console.log(error);
@@ -165,6 +169,7 @@ export const TransactionProvider = ({children}) => {
                 sendTransaction,
                 handleChange,
                 formData,
+                isLoading,
             }}
         >
             {children}
