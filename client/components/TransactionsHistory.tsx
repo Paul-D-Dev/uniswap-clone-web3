@@ -5,7 +5,6 @@ import Image from 'next/image'
 import ethLogo from '../assets/ethCurrency.png'
 import {FiArrowUpRight} from 'react-icons/fi'
 
-
 const style = {
     wrapper: `h-full text-white select-none h-full w-screen flex-1 pt-14 flex items-end justify-end pb-12 overflow-scroll px-8`,
     txHistoryItem: `bg-[#191a1e] rounded-lg px-4 py-2 my-2 flex items-center justify-end`,
@@ -57,7 +56,7 @@ const TransactionsHistory = () => {
                             on{' '}
                             <div className={style.txTimestamp}>
                                 {new Date(transaction.timestamp).toLocaleString('en-US', {
-                                    timeZone: 'PST',
+                                    timeZone: 'UTC',
                                     hour12: true,
                                     timeStyle: 'short',
                                     dateStyle: 'long',

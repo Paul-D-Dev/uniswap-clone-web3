@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from "ethers";
 import {contractABI, contractAddress} from "../lib/constants";
 import { client } from '../lib/sanityClient'
+import {useRouter} from "next/router";
 
 
 // TODO handle cancel transaction on metamask
@@ -21,6 +22,8 @@ export const TransactionProvider = ({children}) => {
         amount: '',
     })
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
 
     useEffect(() => {
         checkIfWalletIsConnected();
@@ -159,6 +162,19 @@ export const TransactionProvider = ({children}) => {
             ({ ...prevState, [name]: e.target.value })
         );
     }
+
+
+    /*
+     * Trigger loading
+     */
+    useEffect(() => {
+        if (isLoading) {
+            router.push(`?loading=${currentAccount}`);
+        } else {
+            router.push('/');
+        }
+    }, [isLoading]);
+
 
     return (
         // return bucket of data to be used in other components
