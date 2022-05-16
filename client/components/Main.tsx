@@ -51,7 +51,7 @@ const Main = () => {
         e.preventDefault();
 
         if (!addressTo || !amount) {
-            console.log('addressTo or amount is empty');
+            alert('amount or address is empty.');
             return;
         }
 

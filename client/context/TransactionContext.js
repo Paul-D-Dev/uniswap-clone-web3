@@ -57,18 +57,18 @@ export const TransactionProvider = ({children}) => {
             setCurrentAccount(accounts[0]);
         } catch (error) {
             console.log(error);
-            throw new Error('No ethereum object.');
+            throw new Error('No ethereum account.');
         }
     }
 
     const checkIfWalletIsConnected = async (metamask = eth) => {
         try {
-            noMetamask(metamask);
+            // noMetamask(metamask);
             const accounts = await metamask.request({ method: 'eth_accounts' });
             if(accounts.length) setCurrentAccount(accounts[0]);
         } catch (error) {
             console.log(error);
-            throw new Error('No ethereum object.');
+            throw new Error('No ethereum account.');
         }
     }
 
