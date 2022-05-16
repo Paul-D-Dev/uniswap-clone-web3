@@ -7,12 +7,13 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { useContext } from 'react'
 import { TransactionContext } from '../context/TransactionContext'
+import { useRouter } from 'next/router'
 
 
 
 const style = {
     wrapper: `p-4 w-screen flex justify-between items-center`,
-    headerLogo: `flex w-1/4 items-center justify-start`,
+    headerLogo: `flex w-1/4 items-center justify-start cursor-pointer`,
     nav: `flex-1 flex justify-center items-center`,
     navItemsContainer: `flex bg-[#191B1F] rounded-3xl`,
     navItem: `px-4 py-2 m-1 flex items-center text-lg font-semibold text-[0.9rem] cursor-pointer rounded-3xl`,
@@ -29,7 +30,8 @@ const Header = () => {
 
     const [selectedNav, setSelectedNav] = useState('swap');
     const [userName, setUserName] = useState<string>('');
-    const { connectWallet, currentAccount } = useContext(TransactionContext)
+    const { connectWallet, currentAccount } = useContext(TransactionContext);
+    const router = useRouter();
 
     useEffect(() => {
         if (!currentAccount) {
@@ -44,7 +46,7 @@ const Header = () => {
 
     return (
         <div className={style.wrapper}>
-            <div className={style.headerLogo}>
+            <div className={style.headerLogo} onClick={() => router.push('/')}>
                 <Image src={uniSwapLogo} height={40} width={40} alt='uniswap'/>
             </div>
             <nav className={style.nav}>
