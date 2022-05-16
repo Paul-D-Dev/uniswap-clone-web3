@@ -9,13 +9,13 @@ export const transactionSchema = {
             type: 'string',
         },
         {
-            name: 'fromAdress',
-            title: 'From (Wallet Adress)',
+            name: 'fromAddress',
+            title: 'From (Wallet Address)',
             type: 'string',
         },
         {
-            name: 'toAdress',
-            title: 'To (Wallet Adress)',
+            name: 'toAddress',
+            title: 'To (Wallet Address)',
             type: 'string',
         },
         {
@@ -27,6 +27,6 @@ export const transactionSchema = {
             name: 'timestamp',
             title: 'Timestamp',
             type: 'datetime',
-        }
-    ]
+        },
+    ],
 }
